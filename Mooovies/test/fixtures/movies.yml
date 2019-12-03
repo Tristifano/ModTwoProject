@@ -1,0 +1,27 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  cast: MyString
+  writer: MyString
+  likes: 1
+  released: MyString
+  year: MyString
+  genre: MyString
+  runtime: MyString
+  plot: MyString
+  image: MyString
+  rated: MyString
+
+two:
+  title: MyString
+  cast: MyString
+  writer: MyString
+  likes: 1
+  released: MyString
+  year: MyString
+  genre: MyString
+  runtime: MyString
+  plot: MyString
+  image: MyString
+  rated: MyString
