@@ -1,8 +1,4 @@
 Rails.application.routes.draw do
-  # get 'sessions/new'
-  # get 'sessions/create'
-  # get 'sessions/destroy'
-
   root to:"home#index", as: "main_page"
 
   get "signup", to: "users#new", as: "signup"
