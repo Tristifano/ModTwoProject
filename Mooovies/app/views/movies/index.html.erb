@@ -1,0 +1,15 @@
+<h1> All Movies </h1>
+
+<% form_for @keyword, url => {:action => "get", :id => @keyword }   do |f|%>
+<%= f.text_field %>
+<%= f.submit %>
+<% end %>
+
+<% if @keyword %>
+<%  results = movie_api_call(@keyword) %>
+<ul>
+    <% results.each do |movie| %>
+        <li><%=  movie[:title] %></li>
+    <% end %>
+</ul>
+<% end %>
