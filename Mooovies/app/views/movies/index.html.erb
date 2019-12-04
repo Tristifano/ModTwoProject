@@ -1,15 +1,20 @@
-<h1> All Movies </h1>
+<h1>Search Movies</h1>
 
-<% form_for @keyword, url => {:action => "get", :id => @keyword }   do |f|%>
-    <%= f.text_field %>
-    <%= f.submit %>
+<%= form_tag movies_path, method: :get do %>
+    <%= text_field_tag :keyword, params[:keyword] %>
+    <%=  submit_tag 'Search' %>
 <% end %>
 
-<% if @keyword %>
-<%  results = movie_api_call(@keyword) %>
-<ul>
-    <% results.each do |movie| %>
-        <li><%=  movie[:title] %></li>
+<% if @movies %>
+    <% @movies.each do |movie| %>
+        <% if movie["Poster"] == "N/A" %>
+            <% default_img = "https://www.quantabiodesign.com/wp-content/uploads/No-Photo-Available.jpg" %>
+            <%= link_to image_tag(default_img, width: 300), movies_path(id: movie["imdbID"]) %>
+        <% else %>
+            <div class="container", id="row">
+                <%= link_to image_tag(movie["Poster"]), movie_path(id: movie["imdbID"]) %>
+            </div>
+        <% end %>
     <% end %>
-</ul>
 <% end %>
+

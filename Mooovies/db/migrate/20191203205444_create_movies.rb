@@ -12,6 +12,7 @@ class CreateMovies < ActiveRecord::Migration[6.0]
       t.string :plot
       t.string :image
       t.string :rated
+      t.string :imdbID
 
       t.timestamps
     end
