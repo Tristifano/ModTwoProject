@@ -1,1 +1,25 @@
-    <h1><%= @movie["Title"] %><h1>
+<h1><%= @movie["Title"] %><h1>
+<%= image_tag(@movie["Poster"]) %>
+
+<div class="plot">
+    <h6><%= @movie["Plot"]%></h6>
+</div>
+
+<div class="rating">
+    <h6><%= @movie["Rated"]%></h6>
+</div>
+
+<h1>Review</h1>
+<%= form_tag add_review_path do %>
+    <%= label_tag :content, "Writing a review" %>
+    <%= text_area_tag :content, nil, row: 50, cols: 52 %><br>
+
+    <%= label_tag :rating, "Rate" %> 
+    <%= number_field_tag :rating, nil, in: 0..5 %><br>
+    
+    <%= hidden_field(:movie, :id, :value => @movie["imdbID"]) %>
+
+    <%= submit_tag "Submit" %>
+<% end %>
+
+<% byebug %>

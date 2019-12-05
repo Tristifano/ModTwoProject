@@ -11,9 +11,7 @@
             <% default_img = "https://www.quantabiodesign.com/wp-content/uploads/No-Photo-Available.jpg" %>
             <%= link_to image_tag(default_img, width: 300), movies_path(id: movie["imdbID"]) %>
         <% else %>
-            <div class="container", id="row">
-                <%= link_to image_tag(movie["Poster"]), movie_path(id: movie["imdbID"]) %>
-            </div>
+            <%= link_to image_tag(movie["Poster"]), movie_path(id: movie["imdbID"]) %>
         <% end %>
     <% end %>
 <% end %>

@@ -1,17 +1,20 @@
 Rails.application.routes.draw do
+
+  #home controller route
   root to:"home#index", as: "main_page"
 
-  #home controller
+  #users controller route
   get "signup", to: "users#new", as: "signup"
 
-  #session controller
+  #sessions controller route
   get "login", to: "sessions#new", as: "login"
   get "logout", to: "sessions#destroy", as: "logout"
   
+  #movies controller route
   get "search", to: "movies#index", as: "search"
 
-  # search controller
-  # post "search", to: "searches#index", as: "keyword"
+  #review controller route
+  post "add_review", to: 'reviews#create', as: 'add_review'
   
   resources :sessions
   resources :reviews

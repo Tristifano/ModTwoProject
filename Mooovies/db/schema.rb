@@ -13,18 +13,7 @@
 ActiveRecord::Schema.define(version: 2019_12_03_205936) do
 
   create_table "movies", force: :cascade do |t|
-    t.string "title"
-    t.string "cast"
-    t.string "writer"
-    t.integer "likes"
-    t.string "released"
-    t.string "year"
-    t.string "genre"
-    t.string "runtime"
-    t.string "plot"
-    t.string "image"
-    t.string "rated"
-    t.string "imdbID"
+    t.text "properties"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -42,12 +31,7 @@ ActiveRecord::Schema.define(version: 2019_12_03_205936) do
 
   create_table "users", force: :cascade do |t|
     t.string "username"
-    t.string "email"
-    t.string "password"
-    t.string "name"
-    t.integer "age"
-    t.string "location"
-    t.string "image"
+    t.string "password_digest"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
