@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  #home controller route
+    #home controller route
   root to:"home#index", as: "main_page"
 
   #users controller route
@@ -20,4 +20,7 @@ Rails.application.routes.draw do
   resources :reviews
   resources :movies
   resources :users
+  resources :movielists
+  resources :lists
+
 end

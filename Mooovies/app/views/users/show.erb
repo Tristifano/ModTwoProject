@@ -1,2 +1,9 @@
 <h1> Welcome <%= @user.username %> </h1>
+
+<ul>
+    <%=  @user.lists.each do |list| %>
+        <li><%= link_to list["title"], list_path(list) %></li>
+    <% end %>
+</ul>
+
 <%= link_to "Log Out", logout_path %>

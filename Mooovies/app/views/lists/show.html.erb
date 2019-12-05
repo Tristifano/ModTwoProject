@@ -1,0 +1,12 @@
+
+<h1><%= @list.title %></h1>
+<% if !@list.movies.empty? %>
+    <ul>
+    <% @list.movies.each do |movie|%>
+        <li><%= link_to movie.name, movie_path %></li>
+    <% end %>
+    </ul>
+<% else %>
+    <h3>This List Has No Movies</h3><br>
+    <%= link_to "Add One!", movies_path %>
+<% end %>
