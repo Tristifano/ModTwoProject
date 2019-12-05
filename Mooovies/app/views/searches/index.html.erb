@@ -13,7 +13,7 @@
         <% if movie["Poster"] == "N/A" %>
             <li><%= image_tag("https://static-s.aa-cdn.net/img/ios/1160943556/f9f9ba02fa64cd65d122231600f7f1dd?v=1") %> <%= link_to "#{movie["Title"]}", movies_path(id: movie["imdbID"]) %></li>
         <% else %>
-        <li><%= image_tag(movie["Poster"]) %> <%= link_to "#{movie["Title"]}", movie_path(id: movie["imdbID"]) %></li> 
+            <li><%= image_tag(movie["Poster"]) %> <%= link_to "#{movie["Title"]}", movie_path(id: movie["imdbID"]) %></li> 
         <% end %>
     <% end %>
     </ul>

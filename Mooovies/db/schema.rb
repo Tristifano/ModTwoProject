@@ -10,7 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_03_205936) do
+ActiveRecord::Schema.define(version: 2019_12_04_210039) do
+
+  create_table "lists", force: :cascade do |t|
+    t.string "title"
+    t.integer "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_lists_on_user_id"
+  end
+
+  create_table "movielists", force: :cascade do |t|
+    t.integer "movie_id", null: false
+    t.integer "list_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["list_id"], name: "index_movielists_on_list_id"
+    t.index ["movie_id"], name: "index_movielists_on_movie_id"
+  end
 
   create_table "movies", force: :cascade do |t|
     t.string "title"
@@ -52,6 +69,9 @@ ActiveRecord::Schema.define(version: 2019_12_03_205936) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "lists", "users"
+  add_foreign_key "movielists", "lists"
+  add_foreign_key "movielists", "movies"
   add_foreign_key "reviews", "movies"
   add_foreign_key "reviews", "users"
 end

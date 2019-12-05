@@ -1,3 +1,8 @@
 <% if Movie.find_by(imdbID: @movie.imdbID) %>
-    
+
 <h1><%= @movie["Title"] %><h1>
+
+
+
+<%= button_to "Post a Review", new_review_path %>
+<%= button_to "Add to List", lists_path %>

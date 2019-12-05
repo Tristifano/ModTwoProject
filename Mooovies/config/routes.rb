@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :movielists
+  resources :lists
   # get 'sessions/new'
   # get 'sessions/create'
   # get 'sessions/destroy'
@@ -17,5 +19,7 @@ Rails.application.routes.draw do
   resources :reviews
   resources :movies
   resources :users
+  resources :lists
+  resources :movielist
 
 end
