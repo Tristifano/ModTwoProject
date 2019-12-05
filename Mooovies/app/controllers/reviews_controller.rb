@@ -1,19 +1,32 @@
 class ReviewsController < ApplicationController
 
     def create
-        @movie = movie_api_call('i', params[:movie][:id])
         @new_movie = Movie.new
-        @new_movie.properties = @movie
-        @new_movie.save
-        
+
+        @movie = Movie.all.select { |m|
+             m.properties["imdbID"] == params[:movie][:id]
+            }
+                    
+        if @movie.length == 0
+            hash_movie = movie_api_call('i', params[:movie][:id])
+            @new_movie.properties = hash_movie
+            @new_movie.save
+        else
+            @new_movie = @movie[0]
+        end
+
         @user = User.find(session[:user_id])
 
-        Review.create(
+        review = Review.create(
             content: params[:content],
             rating: params[:rating],
             movie: @new_movie,
             user: @user
         )
+        
+        if review.save
+            redirect_to "/movies/#{@new_movie.properties["imdbID"]}"
+        end
     end
 
     private

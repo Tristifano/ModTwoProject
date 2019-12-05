@@ -18,8 +18,14 @@
     <%= number_field_tag :rating, nil, in: 0..5 %><br>
     
     <%= hidden_field(:movie, :id, :value => @movie["imdbID"]) %>
-
     <%= submit_tag "Submit" %>
 <% end %>
 
-<% byebug %>
+<h1> User Reviews</h1>
+<% if @reviews %>
+    <ul>
+    <% @reviews.each do |review| %>
+        <li><%= review.content %> <%= review.rating %></li>
+    <% end %>
+    </ul>
+<% end %>
