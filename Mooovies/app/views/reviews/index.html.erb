@@ -1,8 +1,6 @@
 <h1>All Reviews</h1>
 <ul>
-<% @reviews.each do |review| %>
-<li>
-<%= link_to review.movie.title %>
-</li>
-<% end %>
+    <% @reviews.each do |review| %>
+        <li><%= link_to review.movie.title %></li>
+    <% end %>
 </ul>

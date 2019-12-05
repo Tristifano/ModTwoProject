@@ -6,4 +6,8 @@
     <% end %>
 <% end %>
 
-<%= render "form" %>
+<% if session[:user_id] %>
+    <h1>You are already logged in.</h1>
+<% else %>
+    <%= render "form" %>
+<% end %>
