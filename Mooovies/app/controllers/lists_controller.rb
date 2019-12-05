@@ -1,17 +1,21 @@
 class ListsController < ApplicationController
+
     def new
+        @list = List.new
     end
 
     def create
         @list = List.new
-        @list.title = list_params
+        @list.title = list_params[:title]
         @list.user = current_user
         @list.save
+        redirect_to user_path(current_user)
     end
 
-    def list
-        @list =  List.find_by(:id)
+    def show
+        @list =  List.find(params[:id])
     end
+
     def edit
     end
     
