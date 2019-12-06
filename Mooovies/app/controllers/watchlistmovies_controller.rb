@@ -22,6 +22,7 @@ class WatchlistmoviesController < ApplicationController
                 byebug
             @watchlist = wat
             new_watchlist_movie
+            redirect_to watchlist_path(@watchlist)
             else
                 byebug
                 redirect_to movie_path(@new_movie.properties["imdbID"])
