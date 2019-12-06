@@ -10,3 +10,6 @@
 <% if @user.id == session[:user_id] %>
     <%= link_to "Log Out", logout_path %>
 <% end %>
+
+<%= button_to "Search", search_path, method: "get" %>
+<%= button_to "All Lists", lists_path, method: "get" %>

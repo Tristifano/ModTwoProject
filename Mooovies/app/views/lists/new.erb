@@ -3,6 +3,9 @@
 <%= form_for @list do |f| %>
 <%= f.label :title %><br>
 <%= f.text_field :title %><br>
+<%= f.label "Add a Picture" %><br>
+<%= f.file_field :avatar %><br>
+<%= hidden_field_tag :user_id, current_user.id %><br>
 <%= f.submit "Finalize List" %>
 <% end %>
 

@@ -8,10 +8,14 @@ class ListsController < ApplicationController
     end
 
     def create
+        byebug
+        
         @list = List.new
         @list.title = list_params[:title]
         @list.user = current_user
         @list.save
+        byebug
+        @list.avatar.attach(list_params[:avatar])
         redirect_to user_path(current_user)
     end
 
@@ -31,6 +35,7 @@ class ListsController < ApplicationController
 
     def destroy
         @list = List.find(params[:id])
+        @list.avatar.purge
         byebug
         @list.delete
         redirect_to user_path(current_user)
@@ -39,6 +44,6 @@ class ListsController < ApplicationController
     private
 
     def list_params
-        params.require(:list).permit(:title)
+        params.require(:list).permit(:title, :user_id, :avatar)
     end
 end
