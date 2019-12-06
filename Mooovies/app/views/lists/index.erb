@@ -1,6 +1,6 @@
 <h1>Users' Lists</h1>
 <ul>
-<%= @lists.each do |list| %>
+<% @lists.each do |list| %>
 <li>
 <%= link_to list.title, list %> By: <%= link_to list.user.username, list.user %>
 </li>

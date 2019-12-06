@@ -1,5 +1,6 @@
 
 <h1><%= @list.title %></h1>
+<%= button_to "Edit", edit_list_path(@list), params: {id: @list.id }, :method => "get" %>
 <% if !@list.movies.empty? %>
     <% @list.movies.each do |movie|%>
         <%= link_to image_tag(movie.properties["Poster"]), movie_path(movie.properties["imdbID"]) %>
@@ -8,3 +9,5 @@
     <h3>This List Has No Movies</h3><br>
     <%= link_to "Add One!", movies_path %>
 <% end %>
+
+

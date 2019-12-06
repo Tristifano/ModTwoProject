@@ -1,0 +1,17 @@
+<h1>Edit List</h1>
+
+<h3><%= @list.title %></h3>
+<%= form_for @list do |f| %>
+<%= f.label :title, "Change Title" %>
+<%= f.text_field :title %>
+<%= f.submit "Update Title" %>
+<% end %>
+
+<% @list.movies.each do |movie| %>
+<%= image_tag(movie.properties["Poster"])%>
+<%= button_to "Delete", {controller: :movielists, action: "destroy", movie_id: movie.id, list_id: @list.id }, method: "delete" %>
+<% end %>
+<%= button_to "Delete List", list_path(@list), action: "destroy", method: "delete" %>
+<%= button_to "Done", list_path(@list), method: "get" %>
+
+
