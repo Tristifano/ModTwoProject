@@ -1,18 +1,28 @@
-<h1>Search Movies</h1>
+    <div class="top-container">
+        <h1 class="text-center">Search Movies</h1>
+        <div class="search-container">
+            <%= form_tag movies_path, method: :get do %>
+                <%= text_field_tag :keyword, params[:keyword], class: "form-" %>
+                <%=  button_tag(type: 'submit', class: "btn btn-secondary") do %>Search<% end %>
+            <% end %>
+        </div>
+    </div>
 
-<%= form_tag movies_path, method: :get do %>
-    <%= text_field_tag :keyword, params[:keyword] %>
-    <%=  submit_tag 'Search' %>
-<% end %>
-
-<% if @movies %>
-    <% @movies.each do |movie| %>
-        <% if movie["Poster"] == "N/A" %>
-            <% default_img = "https://www.quantabiodesign.com/wp-content/uploads/No-Photo-Available.jpg" %>
-            <%= link_to image_tag(default_img, width: 300), movies_path(id: movie["imdbID"]) %>
-        <% else %>
-            <%= link_to image_tag(movie["Poster"]), movie_path(id: movie["imdbID"]) %>
+    <div class="movie-container container mt-5">
+        <% if @movies %>
+            <% @movies.each do |movie| %>
+                <% if movie["Poster"] == "N/A" %>
+                    <div class="movie">
+                        <% default_img = "https://www.quantabiodesign.com/wp-content/uploads/No-Photo-Available.jpg" %>
+                        <%= link_to image_tag(default_img, style: 'width:10%;'), movies_path(id: movie["imdbID"])%>
+                    </div>
+                <% else %>
+                    <div class="movie">
+                        <%= link_to image_tag(movie["Poster"], style: 'width:10%;'), movie_path(id: movie["imdbID"]) %>
+                        <%= link_to movie["Title"], movie_path(id: movie["imdbID"]) %>
+                    </div>
+                <% end %>
+            <% end %>
         <% end %>
-    <% end %>
-<% end %>
+    </div>
 
