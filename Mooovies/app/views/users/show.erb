@@ -6,6 +6,8 @@
     <% end %>
 </ul>
 
+<%= link_to "Search Movie", search_path%><br>
+
 <% if @user.id == session[:user_id] %>
     <%= link_to "Log Out", logout_path %>
 <% end %>

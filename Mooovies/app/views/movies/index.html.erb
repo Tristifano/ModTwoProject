@@ -2,7 +2,7 @@
         <h1 class="text-center">Search Movies</h1>
         <div class="search-container">
             <%= form_tag movies_path, method: :get do %>
-                <%= text_field_tag :keyword, params[:keyword], class: "form-" %>
+                <%= text_field_tag :keyword, params[:keyword] %>
                 <%=  button_tag(type: 'submit', class: "btn btn-secondary") do %>Search<% end %>
             <% end %>
         </div>

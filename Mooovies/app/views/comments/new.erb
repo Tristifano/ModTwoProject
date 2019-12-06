@@ -1,25 +1,39 @@
-<h1><%= @review.movie.properties["Title"] %></h1>
+<div class="container">
+    <h1 class="mb-4"><%= @review.movie.properties["Title"] %></h1>
+    
+    <div class="top-comment-page">
+        <div class="review-info">
+            <h4>Review</h4>
+            <p> <%= @review.content %> </p>
+            <p> by: <%= link_to @review.user.username, user_path(id: @review.user.id) %> </p>
+        </div>
 
-<p> <%= @review.content %> </p>
-<div> by: <%= link_to @review.user.username, user_path(id: @review.user.id) %> </div>
+        <div class="form pt-4">
+            <h4>Add Comment</h4>
+            <%= form_tag add_comment_path, method: :post do %>
+                <%= text_area_tag :content, nil, {class: "form-control"} %><br>
 
-<h1>Comments</h1>
-
-<% if @review.comments.length != 0 %>
-    <% @review.comments.each do |comment| %>
-        <% if comment.content %>
-            <div>
-                <%= comment.content %>
-                <%= link_to comment.user.username, user_path(id: comment.user.id) %>
-            </div>
+                <%= submit_tag "Submit", class: "btn btn-primary" %>
+                <%= hidden_field_tag(:review_id, @review.id) %>
+            <% end %>
+        </div>
+    </div>
+        
+    
+    <div class="comments">
+        <h4 class="mb-4">Comments</h4>
+        <% if @review.comments.length != 0 %>
+            <% @review.comments.each do |comment| %>
+                <% if comment.content %>
+                    <div class="comment-content">
+                        <p><%= link_to comment.user.username, user_path(id: comment.user.id) %></p>
+                        <p><%= comment.content %></p>
+                    </div>
+                <% end %>
+            <% end %>
         <% end %>
-    <% end %>
-<% end %>
+    </div>
+   
 
-<h1>Add Comment</h1>
-<%= form_tag add_comment_path, method: :post do %>
-    <%= text_area_tag :content %>
-    <br>
-    <%= hidden_field_tag(:review_id, @review.id) %>
-    <%= submit_tag "Submit" %>
-<% end %>
+    
+</div>

@@ -15,8 +15,8 @@
  @import "bootstrap";
 
 .top-container {
-    background-color: rgb(173, 173, 173);
-    padding: 1rem;
+    background-color: rgb(78, 78, 78);
+    padding: 2rem;
 
     h1 {
         font-size: 2rem;
@@ -58,8 +58,75 @@
     }
 }
 
-.movie-info {
-    background-color: gray;
-    display: flex;
+.show-pg {
     
+    
+    h1 {
+        font-size: 4rem;
+        color: rgb(73, 73, 73);
+    }
+}
+
+.movie-info {
+    background-color: rgb(179, 179, 179);
+    display: flex;
+    padding: 1rem;
+    border-radius: 10px;
+
+    .right-info {
+        padding-left: 3rem;
+
+        textarea {
+            width: 100%;
+            height: 150px;
+        }
+
+        .form-inputs {
+            display: flex;
+
+            .left {
+                width: 70%;
+            }
+
+            .right {
+                padding-left: 1rem;
+                width: 30%;
+            }
+        }
+    }
+}
+
+.review {
+    border-top: 1px solid gray;
+    padding: 2rem;
+
+    .add_comment_btn {
+        float: right;
+        border-radius: 3px;
+        background-color: rgb(35, 72, 192);
+        color:white;
+    }
+}
+
+.top-comment-page {
+    .review-info {
+        padding: 1rem;
+    }
+    .form {
+        padding: 1rem;
+
+        textarea {
+            width: 50%;
+            height: 10rem;
+        }
+    }
+}
+
+.comments {
+    padding: 1rem;
+    
+    .comment-content {
+        border-top: 1px solid gray;
+        padding: 1.2rem;
+    }
 }
