@@ -15,7 +15,7 @@ class ReviewsController < ApplicationController
             @new_movie = @movie[0]
         end
 
-        @user = User.find(session[:user_id])
+        @user = current_user
 
         review = Review.create(
             content: params[:content],

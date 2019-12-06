@@ -1,0 +1,10 @@
+<h1> Watch Later </h1>
+
+<% @watchlist.movies.each do |movie| %>
+<div class= "Movie">
+<%= link_to image_tag(movie.properties["Poster"]), movie_path(movie.properties["imdbID"]) %>
+<%= button_to "Delete", {controller: :watchlistmovies, action: "destroy", movie_id: movie.id}, method: "delete" %>
+</div>
+<% end %>
+
+<%= link_to "Back to Profile", user_path(current_user) %>

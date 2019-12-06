@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_05_211748) do
+ActiveRecord::Schema.define(version: 2019_12_06_000859) do
 
   create_table "comments", force: :cascade do |t|
     t.integer "user_id", null: false
@@ -63,6 +63,22 @@ ActiveRecord::Schema.define(version: 2019_12_05_211748) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "watchlistmovies", force: :cascade do |t|
+    t.integer "watchlist_id", null: false
+    t.integer "movie_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["movie_id"], name: "index_watchlistmovies_on_movie_id"
+    t.index ["watchlist_id"], name: "index_watchlistmovies_on_watchlist_id"
+  end
+
+  create_table "watchlists", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_watchlists_on_user_id"
+  end
+
   add_foreign_key "comments", "reviews"
   add_foreign_key "comments", "users"
   add_foreign_key "lists", "users"
@@ -70,4 +86,7 @@ ActiveRecord::Schema.define(version: 2019_12_05_211748) do
   add_foreign_key "movielists", "movies"
   add_foreign_key "reviews", "movies"
   add_foreign_key "reviews", "users"
+  add_foreign_key "watchlistmovies", "movies"
+  add_foreign_key "watchlistmovies", "watchlists"
+  add_foreign_key "watchlists", "users"
 end
