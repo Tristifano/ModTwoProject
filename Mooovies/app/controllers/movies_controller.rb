@@ -20,8 +20,5 @@ class MoviesController < ApplicationController
 
     private
 
-    def movie_api_call(q, keyword)
-        response =  RestClient.get("http://www.omdbapi.com/?#{q}=#{keyword}&type=movie&apikey=3f96a270")
-        results_hash = JSON.parse(response.body)
-    end
+    
 end

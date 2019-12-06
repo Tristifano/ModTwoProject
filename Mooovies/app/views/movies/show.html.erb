@@ -10,6 +10,16 @@
     <h6><%= @movie["Rated"]%></h6>
 </div>
 
+<div class="runtime">
+    <h6>Runtime: <%= @movie["Runtime"]%></h6>
+</div>
+
+
+
+<div class="actors">
+
+<%= button_to "Watch Later", watchlistmovies_path(imdbID: @movie["imdbID"], method: "post") %>
+
 <h1>Review</h1>
 <%= form_tag add_review_path do %>
     <%= label_tag :content, "Writing a review" %>
@@ -30,3 +40,17 @@
     <% end %>
     </ul>
 <% end %>
+<br>
+
+
+<h1> Add To List </h1>
+<%= form_tag movielists_path do %>
+<%= collection_select(:movielist, :list_id, current_user.lists, :id, :title)%><br>
+<%= hidden_field(:movielist, :imdbID, :value => @movie["imdbID"])%>
+<%= submit_tag %>
+<% end %>
+
+I want the list for the current user.
+
+
+

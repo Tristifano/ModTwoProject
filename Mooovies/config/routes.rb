@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :watchlistmovies
+  resources :watchlists
     #home controller route
   root to:"home#index", as: "main_page"
 
@@ -22,5 +24,8 @@ Rails.application.routes.draw do
   resources :users
   resources :movielists
   resources :lists
+  resources :watchlistmovies
+  resources :watchlists
+  resources :movies
 
 end
