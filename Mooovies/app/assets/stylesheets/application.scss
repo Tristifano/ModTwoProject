@@ -1,0 +1,65 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ */
+ 
+ @import "bootstrap";
+
+.top-container {
+    background-color: rgb(173, 173, 173);
+    padding: 1rem;
+
+    h1 {
+        font-size: 2rem;
+        color: white;
+    }
+}
+
+.search-container {
+
+    input[type=text] {
+        width: 90%;
+        margin: 0;
+        padding: 0.3rem;
+        border: none;
+    }
+
+    button {
+        padding: 0.3rem;
+        float: right;
+        width: 10%;
+        border: none;
+        border-style: none;
+        border-radius: 0;
+    }
+}
+
+.movie:hover {
+    background-color: rgb(221, 221, 221);
+    cursor: pointer;
+}
+
+.movie {
+    border-top: 1px solid rgb(150, 150, 150);
+    padding: 1rem;
+    
+    a {
+        text-align: center;
+        color: gray;
+    }
+}
+
+.movie-info {
+    background-color: gray;
+    display: flex;
+    
+}

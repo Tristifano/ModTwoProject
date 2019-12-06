@@ -1,0 +1,25 @@
+<h1><%= @review.movie.properties["Title"] %></h1>
+
+<p> <%= @review.content %> </p>
+<div> by: <%= link_to @review.user.username, user_path(id: @review.user.id) %> </div>
+
+<h1>Comments</h1>
+
+<% if @review.comments.length != 0 %>
+    <% @review.comments.each do |comment| %>
+        <% if comment.content %>
+            <div>
+                <%= comment.content %>
+                <%= link_to comment.user.username, user_path(id: comment.user.id) %>
+            </div>
+        <% end %>
+    <% end %>
+<% end %>
+
+<h1>Add Comment</h1>
+<%= form_tag add_comment_path, method: :post do %>
+    <%= text_area_tag :content %>
+    <br>
+    <%= hidden_field_tag(:review_id, @review.id) %>
+    <%= submit_tag "Submit" %>
+<% end %>

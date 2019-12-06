@@ -1,56 +1,65 @@
+<div class="container">
 
-<h1><%= @movie["Title"] %><h1>
-<%= image_tag(@movie["Poster"]) %>
+    <div class="movie-info">
+        <div class="left-info">
+            <h1><%= @movie["Title"] %><h1>
+            <%= image_tag(@movie["Poster"]) %>
+        </div>
 
-<div class="plot">
-    <h6><%= @movie["Plot"]%></h6>
-</div>
-
-<div class="rating">
-    <h6><%= @movie["Rated"]%></h6>
-</div>
-
-<div class="runtime">
-    <h6>Runtime: <%= @movie["Runtime"]%></h6>
-</div>
-
+        <div class="right-info">
+            <h4><%= @movie["Plot"]%></h4>
+            <h6><%= @movie["Rated"]%></h6>
+        </div>
+        
+    </div>
 
 
-<div class="actors">
+    <div class="runtime">
+        <h6>Runtime: <%= @movie["Runtime"]%></h6>
+    </div>
 
-<%= button_to "Watch Later", watchlistmovies_path(imdbID: @movie["imdbID"], method: "post") %>
 
-<h1>Review</h1>
-<%= form_tag add_review_path do %>
-    <%= label_tag :content, "Writing a review" %>
-    <%= text_area_tag :content, nil, row: 50, cols: 52 %><br>
+    <%= button_to "Watch Later", watchlistmovies_path(imdbID: @movie["imdbID"], method: "post") %>
 
-    <%= label_tag :rating, "Rate" %> 
-    <%= number_field_tag :rating, nil, in: 0..5 %><br>
-    
-    <%= hidden_field(:movie, :id, :value => @movie["imdbID"]) %>
-    <%= submit_tag "Submit" %>
-<% end %>
+    <h1>Review</h1>
+    <%= form_tag add_review_path do %>
+        <%= label_tag :content, "Writing a review" %>
+        <%= text_area_tag :content, nil, row: 50, cols: 52 %><br>
 
-<h1> User Reviews</h1>
-<% if @reviews %>
-    <ul>
-    <% @reviews.each do |review| %>
-        <li><%= review.content %> <%= review.rating %></li>
+        <%= label_tag :rating, "Rate" %> 
+        <%= number_field_tag :rating, nil, in: 0..5, step: 0.5 %><br>
+        
+        <%= hidden_field(:movie, :id, :value => @movie["imdbID"]) %>
+        <%= submit_tag "Submit" %>
     <% end %>
-    </ul>
-<% end %>
-<br>
 
+    <h1> User Reviews</h1>
+    <% if @reviews %>
+        <% @reviews.each do |review| %>
+            <% if review.content %>
+                <div>
+                    <%= review.content %> 
+                    <%= review.rating %>
+                    <%= link_to review.user.username, user_path(id: review.user.id) %>
+                    <%= form_tag comment_path, method: :get do %>
+                        <%= hidden_field_tag(:review, review.id) %>
+                        <%= submit_tag "Add Comment"%>
+                    <% end %>
+                </div>
+            <% end %>
+        <% end %>
+    <% end %>
 
-<h1> Add To List </h1>
-<%= form_tag movielists_path do %>
-<%= collection_select(:movielist, :list_id, current_user.lists, :id, :title)%><br>
-<%= hidden_field(:movielist, :imdbID, :value => @movie["imdbID"])%>
-<%= submit_tag %>
-<% end %>
+</div>
 
-I want the list for the current user.
+    <h1> Add To List </h1>
+    <%= form_tag movielists_path do %>
+        <%= collection_select(:movielist, :list_id, current_user.lists, :id, :title)%><br>
+        <%= hidden_field(:movielist, :imdbID, :value => @movie["imdbID"])%>
+        <%= submit_tag %>
+    <% end %>
+
+    I want the list for the current user.
 
 
 

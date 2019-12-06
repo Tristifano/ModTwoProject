@@ -21,8 +21,7 @@ class ReviewsController < ApplicationController
             content: params[:content],
             rating: params[:rating],
             movie: @new_movie,
-            user: @user
-        )
+            user: @user)
         
         if review.save
             redirect_to "/movies/#{@new_movie.properties["imdbID"]}"

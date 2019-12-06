@@ -12,6 +12,16 @@
 
 ActiveRecord::Schema.define(version: 2019_12_06_000859) do
 
+  create_table "comments", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "review_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.text "content"
+    t.index ["review_id"], name: "index_comments_on_review_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
   create_table "lists", force: :cascade do |t|
     t.string "title"
     t.integer "user_id", null: false
@@ -69,6 +79,8 @@ ActiveRecord::Schema.define(version: 2019_12_06_000859) do
     t.index ["user_id"], name: "index_watchlists_on_user_id"
   end
 
+  add_foreign_key "comments", "reviews"
+  add_foreign_key "comments", "users"
   add_foreign_key "lists", "users"
   add_foreign_key "movielists", "lists"
   add_foreign_key "movielists", "movies"

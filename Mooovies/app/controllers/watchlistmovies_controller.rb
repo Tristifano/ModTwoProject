@@ -15,16 +15,13 @@ class WatchlistmoviesController < ApplicationController
         else
             @new_movie = @movie[0]
         end
-        byebug
         wat = current_user.watchlist
         if wat 
             if !wat.movies.include?(@new_movie)
-                byebug
             @watchlist = wat
             new_watchlist_movie
             redirect_to watchlist_path(@watchlist)
             else
-                byebug
                 redirect_to movie_path(@new_movie.properties["imdbID"])
             end
         else 
