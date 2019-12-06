@@ -20,6 +20,7 @@ class WatchlistmoviesController < ApplicationController
             if !wat.movies.include?(@new_movie)
             @watchlist = wat
             new_watchlist_movie
+            redirect_to watchlist_path(@watchlist)
             else
                 redirect_to movie_path(@new_movie.properties["imdbID"])
             end

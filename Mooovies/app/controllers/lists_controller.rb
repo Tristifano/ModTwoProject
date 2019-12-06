@@ -1,4 +1,7 @@
 class ListsController < ApplicationController
+    def index
+        @lists = List.all
+    end
 
     def new
         @list = List.new
@@ -17,15 +20,20 @@ class ListsController < ApplicationController
     end
 
     def edit
+        @list = List.find(params[:id])
     end
     
     def update
+        @list = List.find(params[:id])
         @list.update(list_params)
+        redirect_to edit_list_path(@list)
     end
 
     def destroy
-        @list = List.find_by(params[:id])
+        @list = List.find(params[:id])
+        byebug
         @list.delete
+        redirect_to user_path(current_user)
     end
 
     private

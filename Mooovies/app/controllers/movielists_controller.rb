@@ -24,6 +24,12 @@ class MovielistsController < ApplicationController
         redirect_to list_path(@list)
     end
 
+    def destroy
+        @movielist = Movielist.find_by(movie_id: params[:movie_id])
+        @movielist.destroy
+        redirect_to edit_list_path(params[:list_id])
+    end 
+
     private
 
     def list_params
